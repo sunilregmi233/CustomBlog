@@ -19,6 +19,5 @@ from blog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'', views.index, name="index"),
-    path('datetime/', views.current_datetime, name="datetime")
+    path('', views.post_list, name="post_list"),
 ]
