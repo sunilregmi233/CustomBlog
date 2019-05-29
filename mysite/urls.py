@@ -30,7 +30,9 @@ urlpatterns = [
     path('login/', views.user_login, name="user_login"),
     path('logout/', views.user_logout, name="user_logout"),
     path('', include('django.contrib.auth.urls')),
-    path('register/', views.register, name='register')
+    path('register/', views.register, name='register'),
+    path('oauth/', include('social_django.urls', namespace="social")),
+    path('likes/', views.like_post, name="like_post"),
     # Password Reset Url's
     # path('password-reset/', auth_views.password_reset, name="password_reset_form"),
     # path('password-reset/done/', auth_views.password_reset_done, name="password_reset_done"),

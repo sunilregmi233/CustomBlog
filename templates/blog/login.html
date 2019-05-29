@@ -10,7 +10,12 @@
             <a href="{% url 'register' %}"> Register </a> |
             <a href="{% url 'password_reset' %}">Forgetten your password?</a>
         </small>
-        <input type="submit" value="login" class="btn btn-outline-success">
+        <br>
+        <input type="submit" value="login" class="btn btn-outline-success col-2">
+        <p> -- OR --</p>
+        <a href="{% url 'social:begin' 'google-oauth2' %}">
+                <button type="button" name="button" class="btn btn-danger col-2">Google</button>
+            </a>
     </form>
     
 {% endblock content %}

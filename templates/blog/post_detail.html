@@ -10,9 +10,17 @@
     <h3>{{ post.title }}</h3>
     <small>Post created by: {{ post.author }}</small>
     <hr>
-    <p>{{ post.body }}</p>
+    <p>{{ post.body }}</p>  
 </div>
-
+{{ total_likes }} Like{{ total_likes|pluralize }}
+<form action="{% url 'like_post' %}" method="POST">
+        {% csrf_token %}
+        {% if is_liked %}
+            <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-danger">Dislike</button>
+        {% else %}    
+        <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">Like</button>
+        {% endif %}
+    </form>
 
 {% endblock content %}
     

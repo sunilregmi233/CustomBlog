@@ -14,14 +14,15 @@ def create_post(N):
     for _ in range(N):
         id = random.randint(1,4)
         title = faker.name()
-        # status = random.choice(['published', 'draft'])
+       
         Post.objects.create(title=title + " Post!!!",
         author = User.objects.get(id=id),
+        status = random.choice(['published', 'draft']),
         slug = "-".join(title.lower().split()),
         body = faker.text(),
         created = timezone.now(),
         updated = timezone.now(),
         )
 
-create_post(10)
+create_post(100)
 print("DATA IS PPOPULATED SUCCESSFULLY")

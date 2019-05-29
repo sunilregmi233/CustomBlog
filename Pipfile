@@ -13,6 +13,7 @@ mysqlclient = "*"
 mysqlserver = "*"
 faker = "*"
 pillow = "*"
+social-auth-app-django = "*"
 
 [requires]
 python_version = "3.6"
