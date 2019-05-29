@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Post
+from .models import Post, Profile
 
 # place all the fields in admin Pannel
 class PostAdmin(admin.ModelAdmin):
@@ -12,4 +12,8 @@ class PostAdmin(admin.ModelAdmin):
     list_editable = ('status',)
     date_hierarchy = ('created')
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'dob', 'photo')
+
 admin.site.register(Post, PostAdmin)
+admin.site.register(Profile,ProfileAdmin)

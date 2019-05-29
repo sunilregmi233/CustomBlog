@@ -11,6 +11,8 @@ django = "==2.1"
 mysql-python = "*"
 mysqlclient = "*"
 mysqlserver = "*"
+faker = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.6"

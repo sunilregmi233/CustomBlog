@@ -1,22 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello world</h1>
 
+
+{% extends 'blog/base.html' %}
+
+{% block title %} Welcome to {{ block.super }} {% endblock title %}
+
+
+{% block content %}
+    
+<div class="container-fluid">
+    <div class="row">
     {% for p in posts %}
-        {{ p.title }}
-        {{ p.author }}
-        {{ p.body }}
-        {{ p.created }}
-        {{ p.updated }}
-        <br>
-
+        <div class="col-md-6">
+            <div class="img-thumbnail">
+                   <a href="{{ p.get_absolute_url }}">{{ p.title }}</a><small style="float:right">{{ p.created }}</small> <br>
+                    Author : {{ p.author }} <br>
+                    {{ p.body }}
+                    <br>
+            </div>
+            <br>       
+        </div>
+    {% empty %}
+        <div class="container-fluid">
+            <h3>No Posts Found having search query "{{ request.GET.q }}"</h3>
+        </div>
     {% endfor %}
-</body>
-</html>
+
+      
+    </div>
+</div>
+
+{% endblock content %}
+    
