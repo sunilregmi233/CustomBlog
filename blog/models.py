@@ -55,3 +55,13 @@ class Profile(models.Model):
 
     def __str__(self):
         return "profile of User {}".format(self.user.username)
+
+
+
+class Images(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+
+
+    def __str__(self):
+        return self.post.title + "Image"

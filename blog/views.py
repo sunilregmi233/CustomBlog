@@ -3,14 +3,15 @@ from django.shortcuts                       import render, get_object_or_404, re
 from django.urls                            import reverse
 from django.contrib.auth.decorators         import login_required
 from django.contrib.auth.models             import User
-from django.http                            import HttpResponse, HttpResponseRedirect, JsonResponse #new
+from django.http                            import HttpResponse, HttpResponseRedirect, JsonResponse, Http404 #new
 from datetime                               import datetime
-from .forms                                 import PostCreateForm, UserLoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
-from .models                                import Post, Profile
+from .forms                                 import *
+from .models                                import Post, Profile, Images
 from django.contrib.auth                    import authenticate, login, logout
 from django.db.models                       import Q
 from django.core.paginator                  import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader                 import render_to_string
+from django.forms                           import modelformset_factory
 # Create your views here.
 
 # def index(request):
@@ -90,18 +91,54 @@ def like_post(request):
         
 
 def post_create(request):
+    ImageFormset = modelformset_factory(Images, fields=('image',), extra=4)
     if request.method == 'POST':
         form = PostCreateForm(request.POST)
-        if form.is_valid():
+        formset = ImageFormset(request.POST or None, request.FILES or None)
+        if form.is_valid() and formset.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+
+            for f in formset:
+                try:
+                    photo = Images(post=post, image=f.cleaned_data['image'])
+                    photo.save()
+                except Exception as e:
+                    break
+            return redirect('post_list')
+
+
+
     else:
         form = PostCreateForm()
+        formset = ImageFormset(queryset=Images.objects.none())
     context = {
         'form': form,
+        'formset': formset,
     }
     return render(request, 'blog/post_create.html', context)
+
+
+def post_edit(request, id):
+    post = get_object_or_404(Post, id=id)
+    if post.author != request.author:
+        raise Http404()
+    if request.method == "POST":
+        form = PostEditForm(request.POST or None, instance=post)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(post.get_absolute_url())
+    else:
+        form = PostEditForm(instance=post)
+
+    context = {
+        'form': form,
+        'post': post,
+    }
+    return render(request, 'blog/post_edit.html', context)
+
+
 
 
 

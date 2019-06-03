@@ -4,9 +4,10 @@
 
 
 {% block content %}
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
+        {{ formset.as_table }}
         <input type="submit" value="create" class="btn btn-outlined-success">
     </form>
 {% endblock content %}

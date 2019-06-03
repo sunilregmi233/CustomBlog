@@ -54,3 +54,14 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ('user',)
+
+
+
+class PostEditForm(forms.ModelForm):
+    class Meta:
+        model =Post
+        fields = (
+            'title',
+            'body',
+            'status',
+        )
