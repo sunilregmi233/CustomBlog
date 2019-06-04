@@ -62,7 +62,7 @@ def proper_pagination(posts, index):
 
 def post_detail(request, id, slug):
     post = get_object_or_404(Post, id=id, slug=slug)
-    comments = Comment.objects.filter(post=post).order_by('-id')
+    comments = Comment.objects.filter(post=post, reply=None).order_by('-id')
     is_liked = False;
     if post.likes.filter(id=request.user.id).exists():
         is_liked = True
@@ -71,9 +71,13 @@ def post_detail(request, id, slug):
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
             content = request.POST.get('content')
-            comment = Comment.objects.create(post=post, user=request.user, content=content)
+            reply_id = request.POST.get('comment_id')
+            comment_qs = None
+            if reply_id:
+                comment_qs = Comment.objects.get(id=reply_id)
+            comment = Comment.objects.create(post=post, user=request.user, content=content, reply=comment_qs)
             comment.save()
-            return HttpResponseRedirect(post.get_absolute_url())
+            # return HttpResponseRedirect(post.get_absolute_url())
     else:
         comment_form = CommentForm()
 
@@ -84,6 +88,10 @@ def post_detail(request, id, slug):
         'comments': comments,
         'comment_form': comment_form,
     }
+    if request.is_ajax():
+        html = render_to_string('blog/comments.html', context, request=request)
+        return JsonResponse({'form': html})
+        
     return render(request, 'blog/post_detail.html', context)
 
 def like_post(request):
