@@ -7,9 +7,14 @@
     
 
 {% block content %}
-   <form action="" method="post">
+   <form enctype="multipart/form-data" method="post"> 
         {% csrf_token %}
         {{ form.as_p }}
+        {{ formset.management_form }}
+        {% for f in formset %}
+            {{ f.as_p }}
+        {% endfor %}
+            
         <input type="submit" value="Update" class="btn btn-success">
    </form>
 {% endblock content %}

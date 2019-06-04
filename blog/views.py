@@ -104,7 +104,7 @@ def post_create(request):
                 try:
                     photo = Images(post=post, image=f.cleaned_data['image'])
                     photo.save()
-                except Exception as e:
+                except:
                     break
             return redirect('post_list')
 
@@ -122,19 +122,43 @@ def post_create(request):
 
 def post_edit(request, id):
     post = get_object_or_404(Post, id=id)
-    if post.author != request.author:
+    ImageFormset = modelformset_factory(Images, fields=('image',), extra=4, max_num=4)
+
+    if post.author != request.user:
         raise Http404()
     if request.method == "POST":
         form = PostEditForm(request.POST or None, instance=post)
-        if form.is_valid():
+        formset = ImageFormset(request.POST or None, request.FILES or None)
+
+        if form.is_valid() and formset.is_valid():
+            print(formset.cleaned_data)
             form.save()
+            print(formset.cleaned_data)
+            data = Images.objects.filter(post=post)
+
+            for index, f in  enumerate(formset):
+                if f.cleaned_data:
+                    if f.cleaned_data['id'] is None:
+                        photo = Images(post=post, image=f.cleaned_data.get('image'))
+                        photo.save()
+                    elif f.cleaned_data['image'] is False:
+                        photo = Images.objects.get(id=request.POST.get('form-' + str(index) + '-id'))
+                        photo.delete()
+                    else:
+                         photo = Images(post=post, image=f.cleaned_data.get('image'))
+                         d = Images.objects.get(id=data[index].id)
+                         d.image = photo.image
+                         d.save()
+
             return HttpResponseRedirect(post.get_absolute_url())
     else:
         form = PostEditForm(instance=post)
+        formset = ImageFormset(queryset=Images.objects.filter(post=post))
 
     context = {
         'form': form,
         'post': post,
+        'formset': formset,
     }
     return render(request, 'blog/post_edit.html', context)
 

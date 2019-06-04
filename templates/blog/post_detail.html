@@ -26,7 +26,7 @@
     {% if post.author == request.user %}
     <div class="section-1" style="float:right;">
         <a href="{% url 'blog:post_edit' id=post.id %}">
-            <button type="button" class="btn btn-success"></button>
+            <button type="button" class="btn btn-success">Edit</button>
         </a>
     </div>
     {% endif %}
