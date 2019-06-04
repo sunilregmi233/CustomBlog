@@ -62,13 +62,27 @@ def proper_pagination(posts, index):
 
 def post_detail(request, id, slug):
     post = get_object_or_404(Post, id=id, slug=slug)
+    comments = Comment.objects.filter(post=post).order_by('-id')
     is_liked = False;
     if post.likes.filter(id=request.user.id).exists():
         is_liked = True
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST or None)
+        if comment_form.is_valid():
+            content = request.POST.get('content')
+            comment = Comment.objects.create(post=post, user=request.user, content=content)
+            comment.save()
+            return HttpResponseRedirect(post.get_absolute_url())
+    else:
+        comment_form = CommentForm()
+
     context ={
         'post': post,
         'is_liked': is_liked,
-        'total_likes': post.total_likes()
+        'total_likes': post.total_likes(),
+        'comments': comments,
+        'comment_form': comment_form,
     }
     return render(request, 'blog/post_detail.html', context)
 

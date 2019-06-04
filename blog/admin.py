@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Post, Profile, Images
+from .models import Post, Profile, Images, Comment
 
 # place all the fields in admin Pannel
 class PostAdmin(admin.ModelAdmin):
@@ -18,6 +18,8 @@ class ProfileAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     list_display= ('post', 'image')
 
+
+admin.site.register(Comment)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Profile,ProfileAdmin)
 admin.site.register(Images, ImageAdmin)
