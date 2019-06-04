@@ -6,6 +6,9 @@
     
 
 {% block content %}
+{% include 'blog/alert.html' %}
+
+
 <div class="container-fluid">
     <h3>{{ post.title }}</h3>
     <small>Post created by: {{ post.author }}</small>
@@ -26,7 +29,10 @@
     {% if post.author == request.user %}
     <div class="section-1" style="float:right;">
         <a href="{% url 'blog:post_edit' id=post.id %}">
-            <button type="button" class="btn btn-success">Edit</button>
+            <button type="button" class="btn btn-outline-success">Edit</button>
+        </a>
+        <a href="{% url 'blog:post_delete' id=post.id %}" id="delete">
+            <button type="button" class="btn btn-danger">Delete</button>
         </a>
     </div>
     {% endif %}

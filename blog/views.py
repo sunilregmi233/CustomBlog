@@ -12,6 +12,7 @@ from django.db.models                       import Q
 from django.core.paginator                  import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader                 import render_to_string
 from django.forms                           import modelformset_factory
+from django.contrib                         import messages
 # Create your views here.
 
 # def index(request):
@@ -106,6 +107,7 @@ def post_create(request):
                     photo.save()
                 except:
                     break
+            messages.success(request, "Post has been successfully created.")
             return redirect('post_list')
 
 
@@ -149,7 +151,7 @@ def post_edit(request, id):
                          d = Images.objects.get(id=data[index].id)
                          d.image = photo.image
                          d.save()
-
+            messages.success(request, "{} has been successfully updated!".format(post.title))
             return HttpResponseRedirect(post.get_absolute_url())
     else:
         form = PostEditForm(instance=post)
@@ -162,6 +164,14 @@ def post_edit(request, id):
     }
     return render(request, 'blog/post_edit.html', context)
 
+
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    if request.user != post.author:
+        raise Http404
+    post.delete()
+    messages.warning(request, "post has been successfully deleted!!")
+    return redirect('post_list')
 
 
 

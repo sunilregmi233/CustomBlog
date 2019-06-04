@@ -9,6 +9,7 @@ urlpatterns = [
     
     re_path(r'^blog/(?P<id>\d+)/(?P<slug>[\w-]+)/', views.post_detail, name="post_detail"),
     url(r'^(?P<id>\d+)/post_edit/$', views.post_edit, name="post_edit"),
+    url(r'^(?P<id>\d+)/post_delete/$', views.post_delete, name="post_delete"),
     re_path('post_create/', views.post_create, name="post_create"),
     path('edit_profile/', views.edit_profile, name="edit_profile"),
 ]
