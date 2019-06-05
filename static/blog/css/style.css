@@ -52,8 +52,14 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-default {
   background-color: transparent;
   border-color: #e7e7e7;
+  height: 93px;
 }
 
+.navbar-nav .nav-link {
+  /* padding-right: 0; */
+  /* padding-left: 0; */
+  top: -16px;
+}
 .ndnav {
   background-color: grey;
   height: 50px;
