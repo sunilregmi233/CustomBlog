@@ -1,13 +1,23 @@
-/*
-    Theme Name: Bethany
-    Theme URL: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/
-    Author: BootstrapMade.com
-    Author URL: https://bootstrapmade.com
-*/
+html {
+  position: relative;
+  min-height: 100%;
+
+}
+
+
+.gallery {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.gallery .img-thumbnail{
+  height: 250px;
+  width: 300px;
+}
 
 body {
   line-height: 1.5;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Lucida Casual', 'Comic Sans MS';
   overflow-x: hidden;
 }
 
@@ -40,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
 /**media Queries**/
 
 .navbar-default {
-  background-color: transparent;
+  background-color: grey;
 }
 
 .ndnav {
@@ -54,10 +64,10 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 610px;
 }
 
-/* .bg-color {
+.bg-color {
   background-color: RGBA(0, 0, 0, 0.41);
-} */
-img {
+ } 
+.navbar-img {
   width: 50px;
   height: 50px;
 }
@@ -102,6 +112,11 @@ img {
   padding: 40px 0;
   transition: all 0.5s;
 }
+.top-nav-collapse {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 25px 0;
+}
+
 
 @media (max-width: 768px) {
 	.navbar-collapse {

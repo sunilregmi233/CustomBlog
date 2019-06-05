@@ -17,6 +17,11 @@ body {
     margin-right: 5px;
 }
 
+a.navbar-logo.logog {
+    width: 200px;
+    height: 200px;
+}
+
 .gallery {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -26,3 +31,8 @@ body {
     height: 250px;
     width: 300px;
 }
+.main-header {
+    background: url(../img/banner.jpg) no-repeat;
+    background-size: cover;
+    min-height: 610px;
+  }
