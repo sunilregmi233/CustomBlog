@@ -3,20 +3,29 @@
 
 
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <small>
-            <a href="{% url 'register' %}"> Register </a> |
-            <a href="{% url 'password_reset' %}">Forgetten your password?</a>
-        </small>
-        <br>
-        <input type="submit" value="login" class="btn btn-outline-success col-2">
-        <p> -- OR --</p>
-        <a href="{% url 'social:begin' 'google-oauth2' %}">
-                <button type="button" name="button" class="btn btn-danger col-2">Google</button>
-            </a>
-    </form>
+<div class="container">
+    <div class="col-sm-6"> 
+        <div class="panel panel-default">
+            <div class="panel-heading"> Login </div>           
+            <div class="panel-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <small>
+                        <a href="{% url 'register' %}"> Register </a> |
+                        <a href="{% url 'password_reset' %}">Forgetten your password?</a>
+                    </small>
+                    <br>
+                    <input type="submit" value="login" class="btn btn-outline-success col-2">
+                    <p> -- OR --</p>
+                    <a href="{% url 'social:begin' 'google-oauth2' %}">
+                            <button type="button" name="button" class="btn btn-danger col-2">Google</button>
+                        </a>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>
     
 {% endblock content %}
 

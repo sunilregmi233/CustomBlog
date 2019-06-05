@@ -19,13 +19,13 @@
         <link rel="stylesheet" type="text/css" href="{% static 'blog/css/animate.css'%}">
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 
     <header class="main-header" id="header">
         <div class="bg-color">
           <!--nav-->
-          <nav class="nav navbar-default navbar-fixed-top">
-            <div class="container">
+          <nav class="nav navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="197">
+            <div class="container-fluid">
               
               <div class="col-md-12">
                 <div class="navbar-header">
@@ -65,7 +65,7 @@
         </div>
        
       </header>
-  <section id="cta-1">
+  <section id="cta-1" class="container-fluid">
     <div class="container">
       <div class="row">
           <div class="cta-info text-center wrapper wow fadeInLeft delay-05s">
@@ -82,7 +82,7 @@
   </section>
   <!---->
   <!---->
-  <section id="feature" class="section-padding">
+  <section id="feature" class="section-padding container-fluid">
     <div class="container">
       <div class="row">
         <div class="col-md-3 wow fadeInLeft delay-05s">
@@ -160,7 +160,7 @@
     </div>
   </section>
   <!---->
-  <section class="section-padding parallax bg-image-2 section wow fadeIn delay-08s" id="cta-2">
+  <section class="section-padding parallax container-fluid bg-image-2 section wow fadeIn delay-08s" id="cta-2">
     <div class="container">
       <div class="row">
         <div class="col-md-8">
@@ -178,7 +178,7 @@
   </section>
   <!---->
   <!---->
-  <section class="section-padding wow fadeInUp delay-02s" id="portfolio">
+  <section class="section-padding wow fadeInUp delay-02s container-fluid" id="portfolio">
     <div class="container">
       <div class="row">
         <div class="col-md-3 col-sm-12">
@@ -225,7 +225,7 @@
   </section>
   <!---->
   <!---->
-  <section class="section-padding wow fadeInUp delay-05s" id="contact">
+  <section class="section-padding wow fadeInUp delay-05s container-fluid" id="contact">
     <div class="container">
       <div class="row white">
         <div class="col-md-8 col-sm-12">
