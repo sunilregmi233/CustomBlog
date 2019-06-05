@@ -16,11 +16,12 @@
                         <a href="{% url 'password_reset' %}">Forgetten your password?</a>
                     </small>
                     <br>
-                    <input type="submit" value="login" class="btn btn-outline-success col-2">
+                    <input type="submit" value="login" class="btn btn-outline-success col-12">
+                    <br>
                     <p> -- OR --</p>
                     <a href="{% url 'social:begin' 'google-oauth2' %}">
-                            <button type="button" name="button" class="btn btn-danger col-2">Google</button>
-                        </a>
+                            <button type="button" name="button" class="btn btn-danger col-12">Google</button>
+                    </a>
                 </form>
             </div>
         </div>

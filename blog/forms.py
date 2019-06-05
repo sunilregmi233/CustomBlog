@@ -3,6 +3,8 @@ from .models import Post, Profile, Comment
 from django.contrib.auth.models import User
 
 class PostCreateForm(forms.ModelForm):
+    title = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    body = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model =Post
         fields = (
@@ -18,8 +20,12 @@ class UserLoginForm(forms.Form):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder': 'Enter Password Here...'}))
-    confirm_password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder': 'Confirm Password...'}))
+    password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder': 'Enter Password Here...', 'class': 'form-control'}))
+    confirm_password = forms.CharField(widget = forms.PasswordInput(attrs = {'placeholder': 'Confirm Password...', 'class': 'form-control'}))
+    username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    first_name = forms.CharField(label="First Name", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(label="last Name", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.CharField(label="EmailAddress", widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -38,8 +44,10 @@ class UserRegistrationForm(forms.ModelForm):
 
 
 class UserEditForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-    email = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly', 'class': 'form-control'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly','class': 'form-control'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = User
@@ -51,10 +59,16 @@ class UserEditForm(forms.ModelForm):
         )
 
 class ProfileEditForm(forms.ModelForm):
+    dob = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+   
+
     class Meta:
         model = Profile
         exclude = ('user',)
-
+        fields = (
+                'dob',  
+                'photo',              
+            )
 
 
 class PostEditForm(forms.ModelForm):

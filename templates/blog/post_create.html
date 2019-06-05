@@ -4,11 +4,21 @@
 
 
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ formset.as_table }}
-        <input type="submit" value="create" class="btn btn-outlined-success">
-    </form>
+<div class="container">
+        <div class="col-sm-6"> 
+            <div class="panel panel-default">
+                <div class="panel-heading"> Create Post </div>           
+                <div class="panel-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        {{ formset.as_table }}
+                        <input type="submit" value="create" class="btn btn-outlined-success">
+                    </form>
+            </div>
+        </div>
+    </div> 
+</div>
+        
 {% endblock content %}
     
