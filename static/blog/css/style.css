@@ -84,7 +84,22 @@ h1, h2, h3, h4, h5, h6 {
   width: 50px;
   height: 50px;
 }
+ .login{
+   top: -15px;
+ }
+ .img-fluid {
+  transition: transform .2s; 
+  max-width: 100%;
+  height: 197px;
+  
 
+}
+.img-fluid:hover {
+  -ms-transform: scale(2); /* IE 9 */
+  -webkit-transform: scale(12); /* Safari 3-8 */
+  transform: scale(2); 
+  
+}
 
 .nav>li>a {
   padding: 0px;
@@ -421,7 +436,9 @@ a, a:hover {
   -webkit-transform: rotate(20deg);
   transform: rotate(20deg);
 }
-
+.login {
+  top: 0;
+}
 /****/
 
 #footer {
