@@ -88,16 +88,33 @@ h1, h2, h3, h4, h5, h6 {
    top: -15px;
  }
  .img-fluid {
-  transition: transform .2s; 
   max-width: 100%;
   height: 197px;
+  display:inline-block;
+  border:0;
+  position: relative;
+  -webkit-transition: all 200ms ease-in;
+  -webkit-transform: scale(1); 
+  -ms-transition: all 200ms ease-in;
+  -ms-transform: scale(1); 
+  -moz-transition: all 200ms ease-in;
+  -moz-transform: scale(1);
+  transition: all 200ms ease-in;
+  transform: scale(1);   
   
 
 }
 .img-fluid:hover {
-  -ms-transform: scale(2); /* IE 9 */
-  -webkit-transform: scale(12); /* Safari 3-8 */
-  transform: scale(2); 
+  box-shadow: 0px 0px 150px #000000;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.5);
   
 }
 
