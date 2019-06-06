@@ -3,8 +3,8 @@ from .models import Post, Profile, Comment
 from django.contrib.auth.models import User
 
 class PostCreateForm(forms.ModelForm):
-    title = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control'}))
-    body = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    title = forms.CharField(label="Title", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    body = forms.CharField(label="Text", widget=forms.TextInput(attrs={'class': 'form-control'}))
     class Meta:
         model =Post
         fields = (
@@ -15,8 +15,8 @@ class PostCreateForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(label="", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(label="Username", widget=forms.TextInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 class UserRegistrationForm(forms.ModelForm):

@@ -47,6 +47,12 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Lato', sans-serif;
 }
 
+.col-sm-12 {
+  max-width: 75%;
+}
+
+/* .gallery */
+
 /**media Queries**/
 
 .navbar-default {
@@ -404,8 +410,8 @@ a, a:hover {
 
 .contact-icon-container {
   position: absolute;
-  top: -38px;
-  right: 0;
+  top: 56px;
+  right: -279px;
   padding-right: 20px;
   font-size: 320px;
   color: #555;
