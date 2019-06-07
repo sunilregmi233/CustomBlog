@@ -224,7 +224,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('post_list')
+    return redirect('home')
 
 def register(request):
     if request.method == 'POST':
@@ -255,7 +255,8 @@ def edit_profile(request):
             return HttpResponseRedirect(reverse("blog:edit_profile"))
     else:
         user_form = UserEditForm(instance=request.user)
-        profile_form = ProfileEditForm(instance=request.user.profile)
+        profile_form = ProfileEditForm(instance=request.user)
+        
 
     context = {
         'user_form': user_form,

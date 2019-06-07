@@ -7,6 +7,8 @@ html {
 body {
     font-family: 'Lucida Casual', 'Comic Sans MS';
     position: relative; 
+    background: #a7f8c6;
+    background: linear-gradient(to right, rgb(134, 236, 156), rgb(151, 230, 151));
 }
 
   .affix {
@@ -51,3 +53,21 @@ a.navbar-logo.logog {
     background-size: cover;
     min-height: 610px;
   }
+  
+  .card-signin .card-title {
+    margin-bottom: 2rem;
+    font-weight: 300;
+    font-size: 1.5rem;
+  }
+
+ 
+  
+  .form-signin .btn {
+    font-size: 80%;
+    border-radius: 5rem;
+    letter-spacing: .1rem;
+    font-weight: bold;
+    padding: 1rem;
+    transition: all 0.2s;
+  }
+  

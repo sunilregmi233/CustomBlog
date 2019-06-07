@@ -7,10 +7,10 @@
 
 {% block content %}
 {% include 'blog/alert.html' %}
-<!-- <div class="container-fluid"> -->  
+
     <div class="row">
     {% for p in posts %}
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="img-thumbnail">
                    <a href="{{ p.get_absolute_url }}">{{ p.title }}</a><small style="float:right">{{ p.created }}</small> <br>
                     Author : {{ p.author }} <br>
@@ -27,7 +27,6 @@
 
       
     </div>
-<!-- </div> -->
 
 <ul class="pagination">
     {% if posts.has_previous %}
